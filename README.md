@@ -14,6 +14,14 @@ src/routes
 ├── _auth.tsx
 ├── _index.tsx
 ├── _root.tsx
+├── app
+│   └── route.tsx
+├── app._index
+│   └── route.tsx
+├── app.projects
+│   └── route.tsx
+├── app_.projects.$id.roadmap
+│   └── route.tsx
 ├── concerts.$city.tsx
 ├── concerts._index.tsx
 ├── concerts.trending.tsx
@@ -45,6 +53,24 @@ const routes: RouteObject[] = [
             /* lazy: import('src/routes/_auth.register') */
           },
         ],
+      },
+      {
+        path: 'app',
+        /* lazy: import('src/routes/app/route') */
+        children: [
+          {
+            index: true,
+            /* lazy: import('src/routes/app._index/route') */
+          },
+          {
+            path: 'projects',
+            /* lazy: import('src/routes/app.projects/route') */
+          },
+        ],
+      },
+      {
+        path: 'app/projects/:id/roadmap',
+        /* lazy: import('src/routes/app_.projects.$id.roadmap/route') */
       },
       {
         path: 'concerts',
@@ -102,7 +128,6 @@ const routes: RouteObject[] = [
 ## TODO
 
 - [ ] [Escaping Special Characters](https://remix.run/docs/en/main/file-conventions/routes#escaping-special-characters)
-- [ ] [Folders for Organization](https://remix.run/docs/en/main/file-conventions/routes#folders-for-organization)
 
 ## inspired by
 

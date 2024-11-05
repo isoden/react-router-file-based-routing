@@ -28,6 +28,8 @@ export function Nav() {
 const linkList = [
   [
     { to: '/', filename: '_index' },
+    { to: '/route', filename: 'route' },
+    { to: '/about', filename: '_landing.about/route' },
     { to: '/not-found', filename: '404' },
   ],
   [
@@ -60,6 +62,14 @@ const linkList = [
     {
       to: '/optional/fr/american-flag-speedo',
       filename: '($lang).$productId',
+    },
+  ],
+  [
+    { to: '/app', filename: 'app._index/route' },
+    { to: '/app/projects', filename: 'app.projects/route' },
+    {
+      to: '/app/projects/1/roadmap',
+      filename: 'app.projects.$id.roadmap/route',
     },
   ],
 ]

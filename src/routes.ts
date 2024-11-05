@@ -22,6 +22,7 @@ const PRESERVED_ROUTES = import.meta.glob<RouteModule>(
 )
 const REGULAR_ROUTES = import.meta.glob<RouteModule>([
   '/src/routes/*.tsx',
+  '/src/routes/*/route.tsx',
   '!/src/routes/(_root|404).tsx',
 ])
 
@@ -34,12 +35,13 @@ function invariant(condition: unknown, message?: string): asserts condition {
 function toSegments(filename: string): string[] {
   // TODO: Support the following features
   // - [ ] Escaping Special Characters
-  // - [ ] Folders for Organization
   // https://remix.run/docs/en/main/file-conventions/routes
 
   return (
     filename
       .replaceAll(/^\/src\/routes\/|\.tsx$/g, '')
+      // folders for organization: e.g. '_landing.about/route' => '_landing.about'
+      .replaceAll('/route', '')
       // splats: e.g. 'files.$' => 'files/*'
       .replaceAll(/\.\$(?=\.|$)/g, '/*')
       // path params: e.g. '$city' => ':city'
@@ -128,6 +130,7 @@ function createRoutes(): RouteObject[] {
 
   return [
     {
+      id: 'root',
       Component: Root,
       ..._root,
       children: [
